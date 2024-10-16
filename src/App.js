@@ -1,21 +1,21 @@
-
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import LoadingSpinner from './components/LoadingSpinner';
-import ErrorBoundary from './components/ErrorBoundary';
-
 import './App.css';
-
 
 const Home = lazy(() => import('./pages/Home'));
 const Movies = lazy(() => import('./pages/Movies'));
 const Series = lazy(() => import('./pages/Series'));
-const Animation = lazy(() => import('./pages/Animation'));
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup')); 
 const NotFound = lazy(() => import('./pages/NotFound'));
+
+
+
+
+
 
 const App = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -48,19 +48,18 @@ const App = () => {
     <Router>
       <div className="App">
         <Header />
-        <ErrorBoundary>
+        
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
               <Route path="/" element={<Home trendingMovies={trendingMovies} />} />
               <Route path="/movies" element={<Movies />} />
               <Route path="/series" element={<Series />} />
-              <Route path="/animation" element={<Animation />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-        </ErrorBoundary>
+          
       </div>
     </Router>
   );

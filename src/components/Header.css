@@ -1,88 +1,135 @@
-
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000;
+  color: white;
+  position: relative; 
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ff0000;
+}
+
+.menu-button {
+  display: none; 
+  font-size: 24px; 
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+
+.navbar {
+  display: flex; 
+  align-items: center; 
+  transition: transform 0.3s ease; 
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; 
+  gap: 20px; 
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-links li a:hover {
+  color: #ff0000;
+}
+
+.signup-btn {
+  background-color: #ff0000;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.signup-btn:hover {
+  background-color: #e60000;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 20px;
+  margin-right: 20px; 
+}
+
+.search-bar input {
+  padding: 5px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+}
+
+.search-bar button {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #e60000;
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 768px) {
+  .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     padding: 10px 20px;
     background-color: #000;
     color: white;
+    position: relative; 
   }
-  
-  .logo h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #ff0000; /
+
+  .menu-button {
+    display: block;
+    margin-top: 10px; 
   }
-  
+
   .navbar {
-    flex: 1;
-    text-align: center;
+    display: none; 
+    flex-direction: column; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    background-color: #000; 
+    width: 250px; 
+    height: 100vh; 
+    z-index: 1000; 
+    padding-top: 60px;
+    padding-left: 20px;
   }
-  
+
+  .navbar.active {
+    display: flex; 
+  }
+
   .nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column; 
+    gap: 10px;
   }
-  
-  .nav-links li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  .nav-links li a:hover {
-    color: #ff0000;
-  }
-  
+
   .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    margin-bottom: 20px; 
+    padding: 0 10px;
   }
-  
-  .search-bar input {
-    padding: 5px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  .search-bar button {
-    padding: 5px 10px;
-    font-size: 14px;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .search-bar button:hover {
-    background-color: #e60000;
-  }
-  
-  .login-signup {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .login-signup a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  
-  .login-signup .signup-btn {
-    background-color: #ff0000;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
-  .login-signup .signup-btn:hover {
-    background-color: #e60000;
-  }
-  
+}

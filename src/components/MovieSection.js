@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getTrendingMovies } from '../Services/tmdbService';
 import MovieCard from './MovieCard';
 import './MovieSection.css';
 
-const MovieSection = ({ title, movies }) => {
+const MovieSection = () => {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTrendingMovies = async () => {
+      setLoading(true);
+      try {
+        const trendingMovies = await getTrendingMovies();
+        setMovies(trendingMovies);
+      } catch (error) {
+        setError('Error fetching trending movies');
+        console.error('Error fetching trending movies:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTrendingMovies();
+  }, []);
+
+  if (loading) return <div className="loading">Cargando películas...</div>;
+  if (error) return <div className="error">{error}</div>;
+
   return (
     <div className="movie-section">
-      <h2>{title}</h2>
-      <div className="movie-list">
-        {movies.map((movie, index) => (
-          <MovieCard
-            key={index}
-            title={movie.title}
-            genre={movie.genre}
-            rating={movie.rating}
-            imageUrl={movie.imageUrl}
-            duration={movie.duration}
-          />
+      <div className="movie-card-container">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>

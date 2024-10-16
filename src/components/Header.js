@@ -1,20 +1,21 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
-import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-
     console.log('Buscando:', searchQuery);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -22,15 +23,10 @@ const Header = () => {
       <div className="logo">
         <h1>PeliStream</h1>
       </div>
-      <nav className="navbar">
-        <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li>
-          <NavLink to="/movies" activeClassName="active"> Movies</NavLink>
-          </li>
-          <li><Link to="/series">Series</Link></li>
-          <li><Link to="/animation">Animation</Link></li>
-          </ul>
+      <button className="menu-button" onClick={toggleMenu}>
+        ☰ 
+      </button>
+      <nav className={`navbar ${isMenuOpen ? 'active' : ''}`}>
         <form className="search-bar" onSubmit={handleSearchSubmit}>
           <input 
             type="text" 
@@ -40,11 +36,14 @@ const Header = () => {
           />
           <button type="submit">Search</button>
         </form>
+        <ul className="nav-links">
+          <li><Link to="/">Home</Link></li>
+          <li><NavLink to="/movies" activeClassName="active">Movies</NavLink></li>
+          <li><Link to="/series">Series</Link></li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/signup" className="signup-btn">Sign Up</Link></li>
+        </ul>
       </nav>
-      <div className="login-signup">
-        <Link to="/login">Login</Link>
-        <Link to="/signup" className="signup-btn">Sign Up</Link>
-      </div>
     </header>
   );
 };

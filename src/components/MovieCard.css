@@ -86,7 +86,7 @@
   }
   
   .movie-card:hover {
-    transform: scale(1.05); /* Efecto de agrandar la tarjeta */
+    transform: scale(1.05); 
   }
   
   .movie-info {
@@ -101,5 +101,5 @@
   }
   
   .movie-card:hover .movie-info {
-    opacity: 1; /* Mostrar detalles al hacer hover */
+    opacity: 1; 
   }

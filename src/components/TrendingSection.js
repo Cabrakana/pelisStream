@@ -2,7 +2,7 @@ import React from 'react';
 import MovieCard from './MovieCard';
 import './TrendingSection.css';
 
-//imagenes
+
 
 import fastx from '../ImagenesPeliculas/fastx.JPG';
 import medellin from '../ImagenesPeliculas/Medellin.jpg';

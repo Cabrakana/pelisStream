@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -11,7 +13,7 @@ const Header = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes manejar la lógica para buscar películas
+
     console.log('Buscando:', searchQuery);
   };
 
@@ -19,34 +21,29 @@ const Header = () => {
     <header className="header">
       <div className="logo">
         <h1>PeliStream</h1>
-
       </div>
       <nav className="navbar">
         <ul className="nav-links">
-        <li><a href="/movies">Home</a></li>
-        <li><a href="/movies">Genre</a></li>
-        <li><a href="/series">Country</a></li>
-
-      <form className="search-bar" onSubmit={handleSearchSubmit}>
-        <input 
-          type="text" 
-          placeholder="Search movies..." 
-          value={searchQuery}
-          onChange={handleSearchChange} 
-        />
-        <button type="submit">Search</button>
-      </form>
-
-
-          <li><a href="/movies">Movies</a></li>
-          <li><a href="/series">Series</a></li>
-          <li><a href="/animation">Animation</a></li>
-        </ul>
+          <li><Link to="/">Home</Link></li>
+          <li>
+          <NavLink to="/movies" activeClassName="active"> Movies</NavLink>
+          </li>
+          <li><Link to="/series">Series</Link></li>
+          <li><Link to="/animation">Animation</Link></li>
+          </ul>
+        <form className="search-bar" onSubmit={handleSearchSubmit}>
+          <input 
+            type="text" 
+            placeholder="Search movies..." 
+            value={searchQuery}
+            onChange={handleSearchChange} 
+          />
+          <button type="submit">Search</button>
+        </form>
       </nav>
-  
       <div className="login-signup">
-        <a href="/login">Login</a>
-        <a href="/signup" className="signup-btn">Sign Up</a>
+        <Link to="/login">Login</Link>
+        <Link to="/signup" className="signup-btn">Sign Up</Link>
       </div>
     </header>
   );
